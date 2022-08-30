@@ -8,19 +8,23 @@ _Versão do Framework necessária para rodar o projeto:_
     
     
 ------------------------------------------------ 
-### NuGet
+### NuGet - API
 
 _Pacotes e versões necessárias para executar o projeto_
 
 
 | Pacote | Versão |
 | ------ | ------ |
-| Microsoft.AspNetCore.Authentication | [2.2.0][PlDb] |
-| GitHub | [plugins/github/README.md][PlGh] |
-| Google Drive | [plugins/googledrive/README.md][PlGd] |
-| OneDrive | [plugins/onedrive/README.md][PlOd] |
-| Medium | [plugins/medium/README.md][PlMe] |
-| Google Analytics | [plugins/googleanalytics/README.md][PlGa] |
+| Microsoft.AspNetCore.Authentication | 2.2.0 |
+| Microsoft.AspNetCore.Authentication.JwtBearer | 6.0.8 |
+| Microsoft.EntityFrameworkCore | 6.0.8 |
+| Microsoft.EntityFrameworkCore.Design | 6.0.8 |
+| Microsoft.EntityFrameworkCore.SqlServer | 6.0.8 |
+| Microsoft.EntityFrameworkCore.Tools | 6.0.8 |
+| Swashbuckle.AspNetCore | 6.4.0 |
+| NLog | 5.0.2 |
+| RabbitMQ.Client | 6.4.0 |
+
 ------------------------------------------------
 ### Execução
 _Para executar o projeto, siga os passos abaixo:_
