@@ -4,8 +4,8 @@
 
 _Versão do Framework necessária para rodar o projeto:_
 
-
- | .NET 6 (DotNet6) | [<https://dotnet.microsoft.com/en-us/download/dotnet/6.0>][PlDb] |
+ | ------ | ------ |
+ | .NET6(DotNet6) | [<https://dotnet.microsoft.com/en-us/download/dotnet/6.0>][PlDb] |
     
     
 ------------------------------------------------ 
