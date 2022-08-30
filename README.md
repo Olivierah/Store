@@ -15,7 +15,7 @@ _Pacotes e versões necessárias para executar o projeto_
 
 | Pacote | Versão |
 | ------ | ------ |
-| Dropbox | [plugins/dropbox/README.md][PlDb] |
+| Microsoft.AspNetCore.Authentication | [2.2.0][PlDb] |
 | GitHub | [plugins/github/README.md][PlGh] |
 | Google Drive | [plugins/googledrive/README.md][PlGd] |
 | OneDrive | [plugins/onedrive/README.md][PlOd] |
