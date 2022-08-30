@@ -4,7 +4,7 @@
 
 _Versão do Framework necessária para rodar o projeto:_
 
-[.NET 6 (DotNet6)]: <https://dotnet.microsoft.com/en-us/download/dotnet/6.0> 
+- [.NET 6 (DotNet6)] 
     
     
 ------------------------------------------------ 
@@ -44,3 +44,7 @@ _Para gerar o token, será necessário criar um cadastro._
  - Acesse o endpoint **"v1/account"** e preencha os dados solicitados.
  - Acesso o endpoint **"v1/login"** e insira os dados solicitados. Um token será devolvido no Response body.
  - Utilize o token para acessar os outros endpoints.
+
+
+
+[.NET 6 (DotNet6)]: <https://dotnet.microsoft.com/en-us/download/dotnet/6.0>
