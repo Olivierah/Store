@@ -4,7 +4,11 @@
 
 _Versão do Framework necessária para rodar o projeto:_
 
-<a><img src="images/net.svg" alt="net" width="40" height="40"/>: <https://dotnet.microsoft.com/en-us/download/dotnet/6.0> 
+<p align="center">
+    <a href="https://dotnet.microsoft.com/en-us/download/dotnet/6.0"><img src="images/net.svg" alt="net" width="40" height="40"/>    
+</p>
+
+ [.NET 6 (DotNet6)]: <https://dotnet.microsoft.com/en-us/download/dotnet/6.0> 
 ------------------------------------------------
 ### NuGet
 
