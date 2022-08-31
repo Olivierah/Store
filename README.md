@@ -22,8 +22,10 @@ _Pacotes e versões necessárias para executar o projeto_
 | Microsoft.EntityFrameworkCore.SqlServer | 6.0.8 |
 | Microsoft.EntityFrameworkCore.Tools | 6.0.8 |
 | Swashbuckle.AspNetCore | 6.4.0 |
-| NLog | 5.0.2 |
 | RabbitMQ.Client | 6.4.0 |
+| NLog.Web.AspNetCore | 5.1.1 |
+| NLog | 5.0.2 |
+
 
 ------------------------------------------------
 ### Execução
