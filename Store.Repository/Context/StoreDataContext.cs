@@ -1,7 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Store.Domain.Entities;
+﻿using Store.Domain.Entities;
 using Store.Repository.Mappings;
+using Microsoft.EntityFrameworkCore;
 
 namespace Store.Repository.Context
 {
