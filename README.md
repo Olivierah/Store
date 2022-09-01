@@ -37,8 +37,9 @@ _Para executar o projeto, siga os passos abaixo:_
 
 **1 - CONECTE A APLICAÇÃO EM UMA BASE DE DADOS Microsoft SQL**
 - Crie um banco vazio com o nome "StoreDB"
-- Utilize o ususário "sa"
-- Senha padrão "Senha12345"
+- Ususário: "sa"
+- Senha padrão: "Senha12345"
+- Para inserir dados de conexão diferentes, acesse: **Store.Repository\Context\StoreDataContext**
 
 **2 - EXECUTANDO A MIGRATION.**
  - certifique-se de que o caminho esteja apontando para o projeto **"Store.Repository"**
