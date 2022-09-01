@@ -14,17 +14,17 @@ _Pacotes e versões necessárias para executar o projeto_
 
 
 | Pacote | Versão | Autor |
-| ------ | ------ | :---: |
-| Microsoft.AspNetCore.Authentication.JwtBearer | 6.0.8 | Microsoft |
-| Microsoft.EntityFrameworkCore.SqlServer | 6.0.8 | Microsoft |
-| Microsoft.EntityFrameworkCore.Design | 6.0.8 | Microsoft |
-| Microsoft.AspNetCore.Authentication | 2.2.0 | Microsoft |
-| Microsoft.EntityFrameworkCore.Tools | 6.0.8 | Microsoft |
-| Microsoft.EntityFrameworkCore | 6.0.8 | Microsoft |
-| Swashbuckle.AspNetCore | 6.4.0 | Swashbuckle.AspNetCore |
-| Newtonsoft.Json | 13.0.1 | James Newton-King |
-| RabbitMQ.Client | 6.4.0 | VMware |
-| SecureIdentity | 1.0.4 | André Baltieri |
+| :---: | ------ | :---: |
+| Microsoft.AspNetCore.Authentication.JwtBearer | **6.0.8** | Microsoft |
+| Microsoft.EntityFrameworkCore.SqlServer | **6.0.8** | Microsoft |
+| Microsoft.EntityFrameworkCore.Design | **6.0.8** | Microsoft |
+| Microsoft.AspNetCore.Authentication | **2.2.0** | Microsoft |
+| Microsoft.EntityFrameworkCore.Tools | **6.0.8** | Microsoft |
+| Microsoft.EntityFrameworkCore | **6.0.8** | Microsoft |
+| Swashbuckle.AspNetCore | **6.4.0** | Swashbuckle.AspNetCore |
+| Newtonsoft.Json | **13.0.1** | James Newton-King |
+| RabbitMQ.Client | **6.4.0** | VMware |
+| SecureIdentity | **1.0.4** | André Baltieri |
 
 
 
