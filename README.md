@@ -8,32 +8,38 @@ _Versão do Framework necessária para rodar o projeto:_
     
     
 ------------------------------------------------ 
-### NuGet - API
+### NuGet - Solution
 
 _Pacotes e versões necessárias para executar o projeto_
 
 
-| Pacote | Versão |
-| ------ | ------ |
-| Microsoft.AspNetCore.Authentication | 2.2.0 |
-| Microsoft.AspNetCore.Authentication.JwtBearer | 6.0.8 |
-| Microsoft.EntityFrameworkCore | 6.0.8 |
-| Microsoft.EntityFrameworkCore.Design | 6.0.8 |
-| Microsoft.EntityFrameworkCore.SqlServer | 6.0.8 |
-| Microsoft.EntityFrameworkCore.Tools | 6.0.8 |
-| Swashbuckle.AspNetCore | 6.4.0 |
-| RabbitMQ.Client | 6.4.0 |
-| NLog.Web.AspNetCore | 5.1.1 |
-| NLog | 5.0.2 |
+| Pacote | Versão | Autor |
+| :--- | ------ | :---: |
+| Microsoft.AspNetCore.Authentication.JwtBearer | **6.0.8** | Microsoft |
+| Microsoft.EntityFrameworkCore.SqlServer | **6.0.8** | Microsoft |
+| Microsoft.EntityFrameworkCore.Design | **6.0.8** | Microsoft |
+| Microsoft.AspNetCore.Authentication | **2.2.0** | Microsoft |
+| Microsoft.EntityFrameworkCore.Tools | **6.0.8** | Microsoft |
+| Microsoft.EntityFrameworkCore | **6.0.8** | Microsoft |
+| Swashbuckle.AspNetCore | **6.4.0** | Swashbuckle.AspNetCore |
+| Newtonsoft.Json | **13.0.1** | James Newton-King |
+| RabbitMQ.Client | **6.4.0** | VMware |
+| SecureIdentity | **1.0.4** | André Baltieri |
 
+------------------------------------------------
+### Docker - RabbitMQ
+
+_O **DockerFile** apresenta os dados de acesso da pataforma web do RabbitMQ e a porta_
 
 ------------------------------------------------
 ### Execução
 _Para executar o projeto, siga os passos abaixo:_
+
 **1 - CONECTE A APLICAÇÃO EM UMA BASE DE DADOS Microsoft SQL**
 - Crie um banco vazio com o nome "StoreDB"
-- Utilize o ususário "sa"
-- Senha padrão "Senha12345"
+- Ususário: "sa"
+- Senha padrão: "Senha12345"
+- Para inserir dados de conexão diferentes, acesse: **_Store.Repository\Context\StoreDataContext_**
 
 **2 - EXECUTANDO A MIGRATION.**
  - certifique-se de que o caminho esteja apontando para o projeto **"Store.Repository"**
