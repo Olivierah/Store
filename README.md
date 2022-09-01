@@ -42,7 +42,9 @@ _Para executar o projeto, siga os passos abaixo:_
 - Para inserir dados de conexão diferentes, acesse: **_Store.Repository\Context\StoreDataContext_**
 
 **2 - EXECUTANDO A MIGRATION.**
- - certifique-se de que o caminho esteja apontando para o projeto **"Store.Repository"**
+ - Certifique-se de que o caminho esteja apontando para o projeto **"Store.Repository"**
+ - As _Migrations_ já estão criadas, basta executar o _dotnet ef database update_ no **CLI** ou _Update-Database_ no **PowerShell**
+ - Caso precise cria-las novamente, basta apagar a pasta **Migrations** dentro do projeto e executar os comandos abaixo:
  - **Utilizando o CLI do .NET**
     - dotnet ef migrations add InitialCreate
     - dotnet ef database update 
