@@ -1,6 +1,5 @@
 ﻿using Store.Domain.Dtos;
 using Store.API.Services;
-using Store.Domain.Entities;
 using SecureIdentity.Password;
 using Microsoft.AspNetCore.Mvc;
 using Store.Repository.Context;
@@ -13,14 +12,17 @@ namespace Store.API.Controllers
     [ApiController]
     public class AccountController : ControllerBase
     {
-
+        private readonly ILogger _logger;
         private readonly TokenService _tokenService;
 
         // Dependências
-        public AccountController(TokenService tokenService)
+        public AccountController(TokenService tokenService, ILogger<AppController> logger)
         {
             _tokenService = tokenService;
+            _logger = logger;
         }
+
+
         // Endpoints
         [HttpPost("v1/account/")]
         public async Task<IActionResult> CreateAccount([FromBody] UserDto userDto)
@@ -33,22 +35,25 @@ namespace Store.API.Controllers
                 AccountDataAccess.CreateNewAccount(userDto);
                 return Ok("Cadastro realizado com sucesso!");
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException ex)
             {
+                _logger.LogInformation(ex.Message);
                 return StatusCode(500, "ACX98");
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
+                _logger.LogInformation(ex.Message);
                 return StatusCode(400, "ACX99");
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogInformation(ex.Message);
                 return StatusCode(500, "ACX05 - Falha interna do servidor");
             }
         }
 
         [HttpPost("v1/login")]
-        public async Task<IActionResult> Login([FromBody] LoginDto login, [FromServices] StoreDataContext context, [FromServices] TokenService tokenService)
+        public async Task<IActionResult> Login([FromBody] LoginDto login, [FromServices] StoreDataContext context)
         {
             if (!ModelState.IsValid)
                 return BadRequest("ACX097 - Usuário ou senha inválido");
@@ -66,15 +71,17 @@ namespace Store.API.Controllers
 
             try
             {
-                var token = tokenService.GenerateToken(user);
+                var token = _tokenService.GenerateToken(user);
                 return Ok(token);
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException ex)
             {
+                _logger.LogInformation(ex.Message);
                 return StatusCode(500, "ACX98 - limite de conexão excedido");
             }
-            catch
+            catch (Exception ex)
             {
+                _logger.LogInformation(ex.Message);
                 return StatusCode(500);
             }
         }

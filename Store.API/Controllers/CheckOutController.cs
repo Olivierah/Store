@@ -13,9 +13,12 @@ namespace Store.API.Controllers
     public class CheckOutController : ControllerBase
     {
         private readonly IRabitMQPublisher _rabitMQProducer;
-        public CheckOutController(IRabitMQPublisher rabitMQProducer)
+        private readonly ILogger _logger;
+
+        public CheckOutController(IRabitMQPublisher rabitMQProducer, ILogger<CheckOutController> logger)
         {
             _rabitMQProducer = rabitMQProducer;
+            _logger = logger;
         }
 
 
@@ -40,16 +43,19 @@ namespace Store.API.Controllers
                 _rabitMQProducer.SendProductMessage(checkout, userId);
                 return Ok("Pedido registrado com sucesso!");
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException ex)
             {
-                return StatusCode(500, "ACX98");
+                _logger.LogInformation(ex.Message);
+                return StatusCode(500, "ACX98 - Não foi possível concluir a compra");
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
+                _logger.LogInformation(ex.Message);
                 return StatusCode(400, "ACX99 - Não foi possível concluir a compra");
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogInformation(ex.Message);
                 return StatusCode(500, "ACX05 - Falha interna do servidor");
             }
         }

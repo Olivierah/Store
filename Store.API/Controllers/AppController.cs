@@ -8,6 +8,13 @@ namespace Store.API.Controllers
     [ApiController]
     public class AppController : ControllerBase
     {
+        private readonly ILogger _logger;
+
+        public AppController(ILogger<AppController> logger)
+        {
+            _logger = logger;
+        }
+
         [HttpGet("v1/app/")]
         public async Task<IActionResult> GetAllApps()
         {
@@ -16,12 +23,14 @@ namespace Store.API.Controllers
                 var appList = AppUtilities.ValidateIfDataAlreadyExist();
                 return Ok(appList);
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException ex)
             {
+                _logger.LogInformation(ex.Message);
                 return StatusCode(500, "ACX98 - Falha interna do servidor");
             }
-            catch
+            catch(Exception ex)
             {
+                _logger.LogInformation(ex.Message);
                 return StatusCode(500, "ACX05 - Falha interna do servidor");
             }
         }
