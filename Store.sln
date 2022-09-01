@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Domain", "Store.Domai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Repository", "Store.Repository\Store.Repository.csproj", "{61205323-325A-4B35-81AF-BD8DDAA6A64A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Store.Business", "Store.Business\Store.Business.csproj", "{EAB9B6FD-43EB-41AA-9170-4B367D18F948}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Store.Business", "Store.Business\Store.Business.csproj", "{EAB9B6FD-43EB-41AA-9170-4B367D18F948}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQConsumer.ConsoleApplication", "RabbitMQConsumer.ConsoleApplication\RabbitMQConsumer.ConsoleApplication.csproj", "{895251F5-041E-4151-BBBA-C720894077AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{EAB9B6FD-43EB-41AA-9170-4B367D18F948}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAB9B6FD-43EB-41AA-9170-4B367D18F948}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAB9B6FD-43EB-41AA-9170-4B367D18F948}.Release|Any CPU.Build.0 = Release|Any CPU
+		{895251F5-041E-4151-BBBA-C720894077AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{895251F5-041E-4151-BBBA-C720894077AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{895251F5-041E-4151-BBBA-C720894077AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{895251F5-041E-4151-BBBA-C720894077AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Store.Repository.Context;
 using Store.API.Services;
 using Microsoft.OpenApi.Models;
+using Store.API.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +31,7 @@ builder.Services.AddAuthentication(x =>
 });
 
 // Add services to the container.
+
 
 builder.Services.AddControllers().ConfigureApiBehaviorOptions(opt =>
 {
@@ -65,7 +67,9 @@ builder.Services.AddSwaggerGen(sw =>
     });
 });
 
+
 builder.Services.AddDbContext<StoreDataContext>();
+builder.Services.AddScoped<IRabitMQPublisher, RabitMQPublisher>();
 builder.Services.AddTransient<TokenService>();
 
 var app = builder.Build();
