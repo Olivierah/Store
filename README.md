@@ -34,6 +34,7 @@ _O **DockerFile** apresenta os dados de acesso da pataforma web do RabbitMQ e a 
 ------------------------------------------------
 ### Execução
 _Para executar o projeto, siga os passos abaixo:_
+
 **1 - CONECTE A APLICAÇÃO EM UMA BASE DE DADOS Microsoft SQL**
 - Crie um banco vazio com o nome "StoreDB"
 - Utilize o ususário "sa"
