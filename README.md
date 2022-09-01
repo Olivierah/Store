@@ -14,7 +14,7 @@ _Pacotes e versões necessárias para executar o projeto_
 
 
 | Pacote | Versão | Autor |
-| ------ | ------ | ------ |
+| ------ | ------ | :---: |
 | Microsoft.AspNetCore.Authentication.JwtBearer | 6.0.8 | Microsoft |
 | Microsoft.EntityFrameworkCore.SqlServer | 6.0.8 | Microsoft |
 | Microsoft.EntityFrameworkCore.Design | 6.0.8 | Microsoft |
