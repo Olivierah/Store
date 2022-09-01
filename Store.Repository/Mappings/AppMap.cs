@@ -1,6 +1,6 @@
-﻿using Store.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Store.Domain.Entities;
 
 namespace Store.Repository.Mappings
 {

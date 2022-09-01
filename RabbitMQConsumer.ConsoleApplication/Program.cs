@@ -1,10 +1,9 @@
 ﻿using System.Text;
 using RabbitMQ.Client;
 using Newtonsoft.Json;
+using Store.Domain.Dtos;
 using RabbitMQ.Client.Events;
 using Store.Business.Utilities;
-using Store.Repository.DataAccess;
-using Store.Domain.Dtos;
 
 var factory = new ConnectionFactory // Definindo uma conexão com um nó RabbitMQ
 {

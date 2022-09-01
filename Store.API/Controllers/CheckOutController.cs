@@ -45,17 +45,17 @@ namespace Store.API.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogInformation(ex.Message);
+                _logger.LogError(ex.Message);
                 return StatusCode(500, "ACX98 - Não foi possível concluir a compra");
             }
             catch (DbUpdateException ex)
             {
-                _logger.LogInformation(ex.Message);
+                _logger.LogError(ex.Message);
                 return StatusCode(400, "ACX99 - Não foi possível concluir a compra");
             }
             catch(Exception ex)
             {
-                _logger.LogInformation(ex.Message);
+                _logger.LogError(ex.Message);
                 return StatusCode(500, "ACX05 - Falha interna do servidor");
             }
         }

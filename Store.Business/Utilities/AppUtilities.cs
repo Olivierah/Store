@@ -1,6 +1,6 @@
-﻿using Store.Domain.Dtos;
+﻿using Store.Repository.DataAccess;
 using Store.Domain.Entities;
-using Store.Repository.DataAccess;
+using Store.Domain.Dtos;
 
 namespace Store.Business.AppUtilities
 {
@@ -9,71 +9,50 @@ namespace Store.Business.AppUtilities
         // Mock de aplicativos (Gera uma lista de apps aleatórios)
         private static List<AppsDto> GenerateAppsList()
         {
-            try
-            {
-                List<AppsDto> apps = new List<AppsDto>();
+            List<AppsDto> apps = new List<AppsDto>();
 
-                for (int i = 1; i < 10; i++)
+            for (int i = 1; i < 10; i++)
+            {
+                string appName = $"Aplicativo - {i}";
+
+                AppsDto app = new AppsDto
                 {
-                    string appName = $"Aplicativo - {i}";
-
-                    AppsDto app = new AppsDto
-                    {
-                        Id = Guid.NewGuid(),
-                        AppName = appName
-                    };
-                    apps.Add(app);
-                }
-                AppDataAccess.SaveRandomAppsInDb(apps);
-                return apps;
+                    Id = Guid.NewGuid(),
+                    AppName = appName
+                };
+                apps.Add(app);
             }
-            catch (Exception)
-            {
-                throw;
-            }
+            AppDataAccess.SaveRandomAppsInDb(apps);
+            return apps;
         }
 
         // Verifica se já existem aplicativos no banco. 
         public static List<AppsDto> ValidateIfDataAlreadyExist()
         {
-            try
-            {
-                var apps = AppDataAccess.GetAllApps();
+            var apps = AppDataAccess.GetAllApps();
 
-                if (apps.Count == 0 || apps == null)
-                {
-                    return GenerateAppsList();
-                }
-                return AppListEntityToAppDto(apps);
-            }
-            catch (Exception)
+            if (apps.Count == 0 || apps == null)
             {
-                throw;
+                return GenerateAppsList();
             }
+            return AppListEntityToAppDto(apps);
         }
 
         //Converte a lista de aplicativos de Entidade para DTO
         private static List<AppsDto> AppListEntityToAppDto(List<App> apps)
         {
-            try
-            {
-                var appListDto = new List<AppsDto>();
+            var appListDto = new List<AppsDto>();
 
-                foreach (var item in apps)
-                {
-                    var appDto = new AppsDto
-                    {
-                        Id = item.Id,
-                        AppName = item.AppName,
-                    };
-                    appListDto.Add(appDto);
-                }
-                return appListDto;
-            }
-            catch (Exception)
+            foreach (var item in apps)
             {
-                throw;
+                var appDto = new AppsDto
+                {
+                    Id = item.Id,
+                    AppName = item.AppName,
+                };
+                appListDto.Add(appDto);
             }
+            return appListDto;
         }
     }
 }

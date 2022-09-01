@@ -29,7 +29,7 @@ _Pacotes e versões necessárias para executar o projeto_
 ------------------------------------------------
 ### Docker - RabbitMQ
 
-_O **DockerFile** apresenta os dados de acesso da pataforma web do RabbitMQ e a porta_
+_O **docker-compose** apresenta os dados de acesso da pataforma web do RabbitMQ e a porta_
 
 ------------------------------------------------
 ### Execução

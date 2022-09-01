@@ -1,7 +1,7 @@
 ﻿using Store.Repository.Context;
 using SecureIdentity.Password;
-using Store.Domain.Dtos;
 using Store.Domain.Entities;
+using Store.Domain.Dtos;
 
 namespace Store.Repository.DataAccess
 {
@@ -29,5 +29,15 @@ namespace Store.Repository.DataAccess
                 await context.SaveChangesAsync();
             }
         }
+
+        public static bool NewAccountVerifyer(UserDto userDto)
+        {
+            using(var context = new StoreDataContext())
+            {
+                var result =  context.Users.Where(x => x.Email == userDto.Email || x.Cpf == userDto.Cpf).FirstOrDefault();
+                if(result == null) return false;
+                return true;
+            }
+        }     
     }
 }

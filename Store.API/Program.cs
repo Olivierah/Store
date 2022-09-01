@@ -1,12 +1,11 @@
-using Store.API;
-using System.Text;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Store.Repository.Context;
-using Store.API.Services;
 using Microsoft.OpenApi.Models;
 using Store.API.Interfaces;
-using Microsoft.EntityFrameworkCore;
+using Store.API.Services;
+using System.Text;
+using Store.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,7 +60,7 @@ builder.Services.AddSwaggerGen(sw =>
                     Id = "Bearer"
                 }
             },
-        new string[]{}
+            new string[]{}
 
         }
 

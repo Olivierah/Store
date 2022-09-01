@@ -1,6 +1,6 @@
-﻿using Store.Domain.Dtos;
+﻿using Store.Repository.Context;
 using Store.Domain.Entities;
-using Store.Repository.Context;
+using Store.Domain.Dtos;
 
 namespace Store.Repository.DataAccess
 {

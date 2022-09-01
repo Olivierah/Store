@@ -1,10 +1,10 @@
-﻿using Store.Domain.Dtos;
-using Store.API.Services;
-using SecureIdentity.Password;
+﻿using Microsoft.EntityFrameworkCore;
+using Store.Repository.DataAccess;
 using Microsoft.AspNetCore.Mvc;
 using Store.Repository.Context;
-using Microsoft.EntityFrameworkCore;
-using Store.Repository.DataAccess;
+using SecureIdentity.Password;
+using Store.API.Services;
+using Store.Domain.Dtos;
 
 namespace Store.API.Controllers
 {
@@ -27,8 +27,10 @@ namespace Store.API.Controllers
         [HttpPost("v1/account/")]
         public async Task<IActionResult> CreateAccount([FromBody] UserDto userDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest("Usuário ou e-mail já cadastrado");
+            // verifica se já existe um cadastro com o email ou cpf informado
+            if (AccountDataAccess.NewAccountVerifyer(userDto) == true) 
+                return BadRequest("CPF ou E-mail já cadastrado");
+
 
             try
             {
@@ -37,17 +39,17 @@ namespace Store.API.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogInformation(ex.Message);
+                _logger.LogError(ex.Message);
                 return StatusCode(500, "ACX98");
             }
             catch (DbUpdateException ex)
             {
-                _logger.LogInformation(ex.Message);
+                _logger.LogError(ex.Message);
                 return StatusCode(400, "ACX99");
             }
             catch (Exception ex)
             {
-                _logger.LogInformation(ex.Message);
+                _logger.LogError(ex.Message);
                 return StatusCode(500, "ACX05 - Falha interna do servidor");
             }
         }
@@ -76,12 +78,12 @@ namespace Store.API.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                _logger.LogInformation(ex.Message);
-                return StatusCode(500, "ACX98 - limite de conexão excedido");
+                _logger.LogError(ex.Message);
+                return StatusCode(500, "ACX98");
             }
             catch (Exception ex)
             {
-                _logger.LogInformation(ex.Message);
+                _logger.LogError(ex.Message);
                 return StatusCode(500);
             }
         }
