@@ -1,27 +1,44 @@
-﻿using RabbitMQ.Client;
+﻿using System.Text;
+using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using System.Text;
 
-var factory = new ConnectionFactory
+var factory = new ConnectionFactory // Definindo uma conexão com um nó RabbitMQ
 {
     HostName = "127.0.0.1",
     UserName = "admin",
     Password = "Senha12345"
 };
 
-var connection = factory.CreateConnection();
+using (var connection = factory.CreateConnection()) // Abrindo uma conexão com o nó definido
+{
 
-using
-var channel = connection.CreateModel();
+    using (var channel = connection.CreateModel()) // Criação do canal onde a fila será definida
+    {
+        channel.QueueDeclare(queue: "orderQueue", // => Nome da Fila que será consumida
+                             durable: false,
+                             exclusive: false,
+                             autoDelete: false,
+                             arguments: null);
 
-channel.QueueDeclare("product", exclusive: false);
+        var consumer = new EventingBasicConsumer(channel); // Solicita a entrega das mensagens de forma assíncrona.
+        
+        consumer.Received += (model, eventArgs) => 
+        {
+            try
+            {
+                var body = eventArgs.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body); // Recebe a mensagem da fila
+                Console.WriteLine($"Product message received: {message}");
+                channel.BasicAck(eventArgs.DeliveryTag, false); // Deu tudo certo
+            }
+            catch
+            {
+                channel.BasicNack(eventArgs.DeliveryTag, false, true); // Se falhar, devolve para a fila
+            }
+        };
 
-var consumer = new EventingBasicConsumer(channel);
-consumer.Received += (model, eventArgs) => {
-  var body = eventArgs.Body.ToArray();
-  var message = Encoding.UTF8.GetString(body);
-  Console.WriteLine($"Product message received: {message}");
-};
+        channel.BasicConsume(queue: "orderQueue", autoAck: false, consumer: consumer);
+        Console.ReadKey();
+    } ;    
+} ;
 
-channel.BasicConsume(queue: "product", autoAck: true, consumer: consumer);
-Console.ReadKey();
