@@ -8,23 +8,24 @@ _Versão do Framework necessária para rodar o projeto:_
     
     
 ------------------------------------------------ 
-### NuGet - API
+### NuGet - Solution
 
 _Pacotes e versões necessárias para executar o projeto_
 
 
-| Pacote | Versão |
-| ------ | ------ |
-| Microsoft.AspNetCore.Authentication | 2.2.0 |
-| Microsoft.AspNetCore.Authentication.JwtBearer | 6.0.8 |
-| Microsoft.EntityFrameworkCore | 6.0.8 |
-| Microsoft.EntityFrameworkCore.Design | 6.0.8 |
-| Microsoft.EntityFrameworkCore.SqlServer | 6.0.8 |
-| Microsoft.EntityFrameworkCore.Tools | 6.0.8 |
-| Swashbuckle.AspNetCore | 6.4.0 |
-| RabbitMQ.Client | 6.4.0 |
-| NLog.Web.AspNetCore | 5.1.1 |
-| NLog | 5.0.2 |
+| Pacote | Versão | Autor |
+| ------ | ------ | ------ |
+| Microsoft.AspNetCore.Authentication.JwtBearer | 6.0.8 | Microsoft |
+| Microsoft.EntityFrameworkCore.SqlServer | 6.0.8 | Microsoft |
+| Microsoft.EntityFrameworkCore.Design | 6.0.8 | Microsoft |
+| Microsoft.AspNetCore.Authentication | 2.2.0 | Microsoft |
+| Microsoft.EntityFrameworkCore.Tools | 6.0.8 | Microsoft |
+| Microsoft.EntityFrameworkCore | 6.0.8 | Microsoft |
+| Swashbuckle.AspNetCore | 6.4.0 | Swashbuckle.AspNetCore |
+| Newtonsoft.Json | 13.0.1 | James Newton-King |
+| RabbitMQ.Client | 6.4.0 | VMware |
+| SecureIdentity | 1.0.4 | André Baltieri |
+
 
 
 ------------------------------------------------
