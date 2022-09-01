@@ -26,7 +26,10 @@ _Pacotes e versões necessárias para executar o projeto_
 | RabbitMQ.Client | **6.4.0** | VMware |
 | SecureIdentity | **1.0.4** | André Baltieri |
 
+------------------------------------------------
+### Docker - RabbitMQ
 
+_O **DockerFile** apresenta os dados de acesso da pataforma web do RabbitMQ e a porta_
 
 ------------------------------------------------
 ### Execução
