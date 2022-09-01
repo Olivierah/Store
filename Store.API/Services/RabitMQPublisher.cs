@@ -7,8 +7,13 @@ namespace Store.API.Services
 {
     public class RabitMQPublisher : IRabitMQPublisher
     {
-        public void SendProductMessage<T>(T message)
+        public void SendProductMessage<T>(T message, string userId)
         {
+            var resultMessage = new Dictionary<string, object>()
+            {
+                {userId, message}
+            };
+
             var factory = new ConnectionFactory // Definindo uma conexão com um nó RabbitMQ
             {
                 HostName = "127.0.0.1",
@@ -27,7 +32,7 @@ namespace Store.API.Services
                                          autoDelete: false,   // => Se true, será deletada automaticamente após os consumidores usarem a fila
                                          arguments: null);
 
-                    var json = JsonConvert.SerializeObject(message);
+                    var json = JsonConvert.SerializeObject(resultMessage); //message
                     var body = Encoding.UTF8.GetBytes(json);
                     channel.BasicPublish(exchange: "", routingKey: "orderQueue", body: body); // Publicação: Possui o nome da fila que será publicada e o corpo da mensagem.
                 } ;               

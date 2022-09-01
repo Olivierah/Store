@@ -1,12 +1,10 @@
-﻿using Store.Business.Utilities;
+﻿using Store.Domain.Dtos;
+using Store.API.Interfaces;
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
-using Store.Repository.Context;
+using Store.Business.Utilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
-using Store.Domain.Dtos;
-using Store.Domain.Entities;
-using System.Security.Claims;
-using Store.API.Interfaces;
 
 namespace Store.API.Controllers
 {
@@ -39,50 +37,8 @@ namespace Store.API.Controllers
                     return BadRequest("Seu carrinho está vazio!");
                 }
 
-                using (var context = new StoreDataContext())
-                {
-                    var buyer = await context.Users.FirstOrDefaultAsync(us => us.Id.ToString() == userId);
-
-                    Order order = new Order
-                    {
-                        Id = Guid.NewGuid(),
-                        Buyer = buyer
-                    };
-
-                    foreach (var item in checkout.AppList)
-                    {
-                        var entityApp = new App
-                        {
-                            AppName = item.AppName,
-                        };
-                        order.AppList.Add(entityApp);
-                    }
-
-                    if (checkout.SaveCreditCardData == true)
-                    {
-                        var creditcard = await context.CreditCards.FirstOrDefaultAsync(c => c.CreditCardNumber == checkout.CreditCardNumber);
-
-                        if (creditcard == null)
-                        {
-                            CreditCard card = new CreditCard
-                            {
-                                Id = Guid.NewGuid(),
-                                CreditCardNumber = checkout.CreditCardNumber,
-                                NameInCreditCard = checkout.NameInCreditCard,
-                                ExpirationDate = checkout.ExpirationDate,
-                                User = buyer
-                            };
-                            order.creditCard = card;
-                        }
-                    }
-
-                    //_rabitMQProducer.SendProductMessage(order);
-                    await context.Orders.AddAsync(order);
-                    await context.SaveChangesAsync();
-                    _rabitMQProducer.SendProductMessage(checkout);
-
-                    return Ok("Pedido registrado com sucesso!");
-                }
+                _rabitMQProducer.SendProductMessage(checkout, userId);
+                return Ok("Pedido registrado com sucesso!");
             }
             catch (InvalidOperationException)
             {

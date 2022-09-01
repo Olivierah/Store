@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Store.Business.AppUtilities;
 using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 
 namespace Store.API.Controllers
 {

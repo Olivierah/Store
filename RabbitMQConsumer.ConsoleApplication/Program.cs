@@ -1,6 +1,10 @@
 ﻿using System.Text;
 using RabbitMQ.Client;
+using Newtonsoft.Json;
 using RabbitMQ.Client.Events;
+using Store.Business.Utilities;
+using Store.Repository.DataAccess;
+using Store.Domain.Dtos;
 
 var factory = new ConnectionFactory // Definindo uma conexão com um nó RabbitMQ
 {
@@ -28,7 +32,11 @@ using (var connection = factory.CreateConnection()) // Abrindo uma conexão com 
             {
                 var body = eventArgs.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body); // Recebe a mensagem da fila
+                var order = JsonConvert.DeserializeObject<Dictionary<string, CheckOutDto>>(message);
                 Console.WriteLine($"Product message received: {message}");
+
+                CheckoutUtilities.CreateOrder(order);
+
                 channel.BasicAck(eventArgs.DeliveryTag, false); // Deu tudo certo
             }
             catch

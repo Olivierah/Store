@@ -2,6 +2,8 @@
 using Store.Domain.Dtos;
 using Store.Repository.DataAccess;
 using Store.Domain.Entities;
+using Store.Repository.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace Store.Business.Utilities
 {
@@ -30,6 +32,60 @@ namespace Store.Business.Utilities
 
 
             return (cardExpiry > DateTime.Now && cardExpiry < DateTime.Now.AddYears(6));  //Verifica se a data de validade do cartão é maior que a data de hoje e nos próximos 6 anos
+        }
+
+        public async static void CreateOrder(Dictionary<string, CheckOutDto> message) //string userId, CheckOutDto checkout
+        {
+            var userId = message.FirstOrDefault().Key; // recupera o userId
+            var checkout = message.FirstOrDefault().Value; // recupera o objeto checkout
+
+            using (var context = new StoreDataContext())
+            {
+                // Recupera os dados do comprador
+                var buyer = await context.Users.FirstOrDefaultAsync(us => us.Id.ToString() == userId);
+
+                // Cria um Pedido e vincula ao comprador
+                Order order = new Order
+                {
+                    Id = Guid.NewGuid(),
+                    Buyer = buyer
+                };
+
+                // Adicona a lista de apps comprados ao pedido
+                foreach (var item in checkout.AppList)
+                {
+                    var entityApp = new App
+                    {
+                        AppName = item.AppName,
+                    };
+                    order.AppList.Add(entityApp);
+                }
+
+                // verifica se o cliemte que salvar os dados do cartão
+                if (checkout.SaveCreditCardData == true)
+                {
+                    //Verifica se o cartão já foi cadastrado
+                    var creditcard = await context.CreditCards.FirstOrDefaultAsync(c => c.CreditCardNumber == checkout.CreditCardNumber);
+
+                    //Caso o cartão não exista, ele gera uma nova entidade a partir do dados selecionados
+                    if (creditcard == null)
+                    {
+                        CreditCard card = new CreditCard
+                        {
+                            Id = Guid.NewGuid(),
+                            CreditCardNumber = checkout.CreditCardNumber,
+                            NameInCreditCard = checkout.NameInCreditCard,
+                            ExpirationDate = checkout.ExpirationDate,
+                            User = buyer
+                        };
+                        //Vincula os dados de pagamento ao pedido
+                        order.creditCard = card;
+                    }
+                }
+
+                await context.Orders.AddAsync(order);
+                await context.SaveChangesAsync();  // Salva no banco          
+            }
         }
     }
 }

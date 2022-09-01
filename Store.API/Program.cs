@@ -6,6 +6,7 @@ using Store.Repository.Context;
 using Store.API.Services;
 using Microsoft.OpenApi.Models;
 using Store.API.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

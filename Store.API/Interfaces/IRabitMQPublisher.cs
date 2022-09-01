@@ -2,6 +2,6 @@
 {
     public interface IRabitMQPublisher
     {
-        public void SendProductMessage<T>(T message);
+        public void SendProductMessage<T>(T message, string userId);
     }
 }
