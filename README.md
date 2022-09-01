@@ -39,7 +39,7 @@ _Para executar o projeto, siga os passos abaixo:_
 - Crie um banco vazio com o nome "StoreDB"
 - Ususário: "sa"
 - Senha padrão: "Senha12345"
-- Para inserir dados de conexão diferentes, acesse: **_Store.Repository\Context\StoreDataContext_**
+- Para inserir dados de conexão diferentes, acesse: **_Store.Repository/Context/StoreDataContext_**
 
 **2 - EXECUTANDO A MIGRATION.**
  - certifique-se de que o caminho esteja apontando para o projeto **"Store.Repository"**
